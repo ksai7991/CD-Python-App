@@ -2,20 +2,15 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: myapp
+  namespace: argo-cd
 spec:
   destination:
-    name: ''
     namespace: apps
     server: 'https://kubernetes.default.svc'
   source:
-    path: myapp-helm-chart
-    repoURL: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/devops.repo'
-    targetRevision: master
-    helm:
-      valueFiles:
-        - values.yaml
-  sources: []
-  project: dev-projects
+    repoURL: 'https://github.com/ksai7991/CD-Python-App.git'
+    targetRevision: main
+  project: python-projects
   syncPolicy:
     automated:
       prune: false
