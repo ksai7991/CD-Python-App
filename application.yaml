@@ -15,6 +15,3 @@ spec:
   syncPolicy:
     syncOptions:
     - CreateNamespace=true   # note capital “C” to match Argo’s exact option
-    automated:
-      prune: false
-      selfHeal: true
