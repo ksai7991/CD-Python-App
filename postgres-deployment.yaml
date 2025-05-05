@@ -1,38 +1,36 @@
+# PostgreSQL StatefulSet
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres
+name: postgresql-db
 spec:
-  serviceName: "postgres"
-  replicas: 1
-  selector:
-    matchLabels:
-      app: postgres
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      containers:
-      - name: postgres
-        image: postgres:15
-        ports:
-        - containerPort: 5432
-        env:
-        - name: POSTGRES_DB
-          value: mydb
-        - name: POSTGRES_USER
-          value: myuser
-        - name: POSTGRES_PASSWORD
-          value: mypass
-        volumeMounts:
-        - name: pgdata
-          mountPath: /var/lib/postgresql/data
-  volumeClaimTemplates:
-  - metadata:
-      name: pgdata
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 10Gi
+serviceName: postgresql-db-service
+selector:
+matchLabels:
+app: postgresql-db
+replicas: 2
+template:
+metadata:
+labels:
+app: postgresql-db
+spec:
+containers:
+- name: postgresql-db
+image: postgres:latest
+volumeMounts:
+- name: postgresql-db-disk
+mountPath: /data
+env:
+- name: POSTGRES_PASSWORD
+value: testpassword
+- name: PGDATA
+value: /data/pgdata
+# Volume Claim
+volumeClaimTemplates:
+- metadata:
+name: postgresql-db-disk
+spec:
+accessModes: ["ReadWriteOnce"]
+resources:
+requests:
+storage: 25Gi
