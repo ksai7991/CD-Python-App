@@ -12,3 +12,9 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true   # note capital “C” to match Argo’s exact option
+    automated:
+      prune: false
+      selfHeal: true
