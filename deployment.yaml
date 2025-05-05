@@ -16,5 +16,5 @@ spec:
       - name: python-app
         image: registry.digitalocean.com/krishnaregistry/newpythonapp:13
         ports:
-        - containerPort: 8080 # Make sure this matches the port your app runs on
+        - containerPort: 8000 # Make sure this matches the port your app runs on
         imagePullPolicy: Always

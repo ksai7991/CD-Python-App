@@ -8,6 +8,6 @@ spec:
   ports:
     - protocol: TCP
       port: 80  # Internal Kubernetes port
-      targetPort: 8080  # Port exposed by the container
+      targetPort: 8000 # Port exposed by the container
       nodePort: 30001  # NodePort to expose the service externally
   type: NodePort

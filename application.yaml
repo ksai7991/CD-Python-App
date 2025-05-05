@@ -4,14 +4,10 @@ metadata:
   name: guestbook
   namespace: argocd
 spec:
-  project: default
   source:
     repoURL: https://github.com/ksai7991/CD-Python-App.git
     targetRevision: HEAD
     path: .
   destination:
     server: https://kubernetes.default.svc
-    namespace: myapp
-  syncPolicy:
-    syncOptions:
-    - CreateNamespace=true   # note capital “C” to match Argo’s exact option
+    namespace: guestbook
