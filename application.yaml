@@ -5,13 +5,14 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: apps
     server: 'https://kubernetes.default.svc'
   source:
     repoURL: 'https://github.com/ksai7991/CD-Python-App.git'
-    targetRevision: main
+    targetRevision: HEAD
   project: python-projects
   syncPolicy:
+    syncOptions:
+    - createNamespace=true
     automated:
       prune: false
       selfHeal: true
